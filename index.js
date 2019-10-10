@@ -1,5 +1,5 @@
-// Create array of questions
-let arrayOfQuestion = [
+// Creating array of questions
+let arrayOfQuestions = [
     {
         category : 'fruits',
         question : 'Fraise',
@@ -21,29 +21,40 @@ let arrayOfQuestion = [
         answer : 'Banaan'
     }
 ]
-// Function turning a question into a flashcard 
+
+// Turning a question into a flashcard 
 function createCard(cardObject) {
+    const board = document.getElementById('board');
     let newDiv = document.createElement('div');
+    newDiv.classList.add('flashcard');
+    let newQuestion = document.createElement('p');
+    let newAnswer = document.createElement('p');
+    newQuestion.classList.add('question');
+    newAnswer.classList.add('answer');
+    newQuestion.innerText = cardObject.question;
+    newAnswer.innerText = cardObject.answer;
+    newDiv.appendChild(newQuestion);
+    newDiv.appendChild(newAnswer);
+    board.appendChild(newDiv);
 }
-// Function looping through array to display them all
+
+// Creating all flashcards
+function loadCards(cardsArray){
+    for(const card of cardsArray){
+        createCard(card);
+    }
+}
+loadCards(arrayOfQuestions);
 
 // Function deleting a card
 
-let h1 = document.getElementById('clickMe');
-
-// h1.onClick = function() {
-//     console.log('you clicked me');
-// }
-h1.addEventListener('click', (e) => {
-    console.log(e);
-    h1.style.color = "yellow";
-});
-
+// Adding event listeners to the cards
 const cards = document.getElementsByClassName('flashcard');
 for (const card of cards) {
     card.addEventListener('click', function(event) {
         const children = card.childNodes;
+        console.log(children);
         const arrChildren = Array.from(children);
-        arrChildren[3].classList.toggle('show');
+        arrChildren[1].classList.toggle('show');
     })
 }
