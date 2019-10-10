@@ -78,18 +78,19 @@ function createCard(cardObject) {
     } else {
         newDiv.classList.add('vegetable');
     }
-    // let deleteBtn = document.createElement('p');
+    let deleteBtn = document.createElement('p');
     let newQuestion = document.createElement('p');
     let newAnswer = document.createElement('p');
     newQuestion.classList.add('question');
     newAnswer.classList.add('answer');
-    // deleteBtn.classList.add('deleteBtn');
-    // deleteBtn.innerText = 'X';
+    deleteBtn.classList.add('deleteBtn');
+    deleteBtn.innerText = 'X Delete card';
+    deleteBtn.classList.add('deleteBtn');
     newQuestion.innerText = cardObject.question;
     newAnswer.innerText = cardObject.answer;
     newDiv.appendChild(newQuestion);
     newDiv.appendChild(newAnswer);
-    // newDiv.appendChild(deleteBtn);
+    newDiv.appendChild(deleteBtn);
     board.appendChild(newDiv);
 }
 
@@ -103,29 +104,25 @@ function loadCards(cardsArray) {
 }
 // loadCards(arrayOfQuestions);
 
-// Deleting a card
-// function deleteCard() {
-//     const deleteBtns = document.getElementsByClassName('deleteBtn');
-//     for (const deleteBtn of DeleteBtns) {
-//         deleteBtn.addEventListener('click', function (event) {
-//             const parentCard = deleteBtn.parentElement;
-//             console.log(parentCard);
-//             // const arrChildren = Array.from(children);
-//             parentCard.classList.toggle('show');
-//         })
-//     }
-// }
-
 // Adding event listeners to the cards
 function addEventListeners() {
     const cards = document.getElementsByClassName('flashcard');
     for (const card of cards) {
         card.addEventListener('click', function (event) {
-            const children = card.childNodes;
-            const arrChildren = Array.from(children);
-            arrChildren[1].classList.toggle('show');
+            if (event.target.classList.contains('deleteBtn')) {
+                const targetAnswer = event.target.previousSibling.innerText;
+                const filteredArr = arrayOfQuestions.filter(function(card){return card.answer !== targetAnswer});
+                // console.log(filteredArr);
+                arrayOfQuestions = filteredArr;
+                loadCards(arrayOfQuestions);
+            } else {
+                const children = card.childNodes;
+                const arrChildren = Array.from(children);
+                arrChildren[1].classList.toggle('show');
+            }
         })
     }
+    return arrayOfQuestions;
 }
 
 // Displaying a random card
@@ -134,6 +131,8 @@ function randomCard() {
     clearBoard();
     createCard(arrayOfQuestions[randomIndex]);
     addEventListeners();
+    // deleteCard()
+
 }
 // Starting the app with a random card
 randomCard();

@@ -42,8 +42,8 @@ form input, form select {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    border: 1px solid #F4F5F4;
-    border-radius: 5%;
+    border: 5px double #F4F5F4;
+    border-radius: 40px;
 }
 
 .flashcard {
@@ -93,7 +93,9 @@ form input, form select {
 .deleteBtn {
     position: absolute;
     bottom:0;
-    left:20px;
+    left:25%;
+    font-size: 15px;
+    font-style: italic;
 }
 
 #switchLanguages{
