@@ -190,4 +190,23 @@ function addNewCard(){
     loadCards(arrayOfQuestions);
 }
 
+// Switching languages
+function switchLanguages(cardsArray){
+    let arr = [];
+    for(const card of cardsArray){
+        const {question, answer} = card;
+        card.question = answer;
+        card.answer = question;
+        arr.push(card);
+    }
+    randomCard();
+}
+
+const switchBtn = document.getElementById('switchLanguages');
+switchBtn.addEventListener('click', () => {
+    switchLanguages(arrayOfQuestions);
+    document.getElementById('subtitle').innerHTML === "Dutch" ? 
+    document.getElementById('subtitle').innerHTML = 'French' : 
+    document.getElementById('subtitle').innerHTML = 'Dutch';
+});
 // TODO : Add capitalize function

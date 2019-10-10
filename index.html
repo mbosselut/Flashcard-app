@@ -12,19 +12,26 @@
 
 <body>
     <h1 id="clickMe">Flash card app</h1>
-    <h2>Learning fruits & vegetables in Dutch</h2>
+    <h2>Learning fruits & vegetables in <span id="subtitle">Dutch</span></h2>
     <div class='buttons'>
         <button id='randBtn'>Click for a random card (or press space)</button>
         <button id='showFullBtn'>Show full collection</button>
         <button id='showFruitsBtn'>Only fruit</button>
         <button id='showVegetablesBtn'>Only vegetables</button>
     </div>
-    <form onsubmit="return false">
-        <input type="text" name="category" placeholder="Category : fruit or vegetable" id="newCategory">
-        <input type="text" name="question" placeholder="Question" id="newQuestion">
-        <input type="text" name="answer" placeholder="Answer" id="newAnswer">
-        <input id="addCard" type="submit" value="Add new card">    
-    </form>
+    <div>
+        <p>Add a new flashcard :</p>
+        <form onsubmit="return false">
+            <select name="category" id="newCategory">
+                    <option value="fruit">Fruit</option>
+                    <option value="vegetable">Vegetable</option>
+            </select>                  
+            <input type="text" name="question" placeholder="Question" id="newQuestion">
+            <input type="text" name="answer" placeholder="Answer" id="newAnswer">
+            <input id="addCard" type="submit" value="Add new card">    
+        </form>
+    </div>
+    
     <div id="board">
         <!-- <div class="flashcard">
             <p class="question">Fraise</p>
@@ -39,6 +46,8 @@
             <p class="answer">Kers</p>
         </div> -->
     </div>
+    <button id="switchLanguages"><i class="fas fa-random"></i> Switch languages</button>
     <script src="index.js"></script>
+    <script src="https://kit.fontawesome.com/19f13c4b5d.js" crossorigin="anonymous"></script>
 </body>
 </html>

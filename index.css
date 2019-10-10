@@ -27,10 +27,10 @@ button, #addCard {
 }
 
 form {
-    margin: 30px 10px 50px 0px;
+    margin: 0px 10px 50px 0px;
 }
 
-form input {
+form input, form select {
     height: 30px;
     padding:3px;
 }
@@ -94,4 +94,9 @@ form input {
     position: absolute;
     bottom:0;
     left:20px;
+}
+
+#switchLanguages{
+    font-size: 20px;
+    margin: 0 auto;
 }
