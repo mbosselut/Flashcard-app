@@ -1,24 +1,38 @@
 // Creating array of questions
-let arrayOfQuestions = [
-    {
-        category : 'fruits',
-        question : 'Fraise',
-        answer : 'Aardbei'
+let arrayOfQuestions = [{
+        category: 'fruits',
+        question: 'Fraise',
+        answer: 'Aardbei'
     },
     {
-        category : 'fruits',
-        question : 'Orange',
-        answer : 'Sinaasappel'
+        category: 'fruits',
+        question: 'Orange',
+        answer: 'Sinaasappel'
     },
     {
-        category : 'fruits',
-        question : 'Cerise',
-        answer : 'Kers'
+        category: 'fruits',
+        question: 'Cerise',
+        answer: 'Kers'
     },
     {
-        category : 'fruits',
-        question : 'Banane',
-        answer : 'Banaan'
+        category: 'fruits',
+        question: 'Banane',
+        answer: 'Banaan'
+    },
+    {
+        category: 'fruits',
+        question: 'Poire',
+        answer: 'Peer'
+    },
+    {
+        category: 'fruits',
+        question: 'Pomme',
+        answer: 'Appel'
+    },
+    {
+        category: 'fruits',
+        question: 'Pêche',
+        answer: 'Perzik'
     }
 ]
 
@@ -41,8 +55,8 @@ function createCard(cardObject) {
 }
 
 // Creating all flashcards
-function loadCards(cardsArray){
-    for(const card of cardsArray){
+function loadCards(cardsArray) {
+    for (const card of cardsArray) {
         createCard(card);
     }
 }
@@ -51,10 +65,10 @@ function loadCards(cardsArray){
 // Deleting a card
 
 // Adding event listeners to the cards
-function addEventListeners(){
+function addEventListeners() {
     const cards = document.getElementsByClassName('flashcard');
     for (const card of cards) {
-        card.addEventListener('click', function(event) {
+        card.addEventListener('click', function (event) {
             const children = card.childNodes;
             const arrChildren = Array.from(children);
             arrChildren[1].classList.toggle('show');
@@ -64,21 +78,26 @@ function addEventListeners(){
 addEventListeners();
 
 // Displaying a random card
-function randomCard(){
+function randomCard() {
     const randomIndex = Math.floor(Math.random() * arrayOfQuestions.length);
     clearBoard();
     createCard(arrayOfQuestions[randomIndex]);
     addEventListeners();
 }
 
-// Event listener for button
+// Event listener for button and space bar
 let button = document.querySelector("button");
 button.addEventListener("click", randomCard);
+document.body.onkeyup = function (e) {
+    if (e.keyCode == 32) {
+        randomCard();
+    }
+}
 
 // Clearing board
-function clearBoard(){
+function clearBoard() {
     const board = document.getElementById('board');
     while (board.firstChild) {
         board.removeChild(board.firstChild);
     };
-}
+};

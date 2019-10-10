@@ -1,10 +1,16 @@
 body {
-    background: lightcyan;
+    background: #AD9A98;
     font-family: 'Overpass', sans-serif;
 }
 
 h1 {
+    color: #F4F5F4;
+    margin-top:50px;
     text-align: center;
+}
+
+button {
+
 }
 
 #board {
@@ -14,29 +20,32 @@ h1 {
 }
 
 .flashcard {
-    background: lightsalmon;
-    color: white;
+    background: #BB8694;
+    color: #F4F5F4;
     margin: 0 auto;
-    width:15%;
+    padding-top: 3%;
+    width:20%;
     text-align: center;
-    height: 200px;
+    height: 250px;
     border-radius:10%;
-    box-shadow: -10px -5px 10px red;
+    box-shadow: -10px -5px 10px #47434E;
     position: relative;
 }
 
 .question {
-    font-size: 20px;
-    position: absolute;
-    left:30%;
+    font-size: 30px;
+    /* position: absolute;
+    left:30%; */
 }
 
 .answer {
-    font-size: 20px;
-    position: absolute;
+    font-size: 30px;
+    color:#47434E;
+    padding-top:10%;
+    /* position: absolute; */
     display:none;
-    bottom: 10%;
-    left: 30%;
+    /* bottom: 10%;
+    left: 30%; */
 }
 
 .show {
