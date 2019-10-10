@@ -12,8 +12,18 @@
 
 <body>
     <h1 id="clickMe">Flash card app</h1>
-    <button id='randBtn'>Click for a random card (or press space)</button>
-    <button id='showFullBtn'>Show full collection</button>
+    <div class='buttons'>
+        <button id='randBtn'>Click for a random card (or press space)</button>
+        <button id='showFullBtn'>Show full collection</button>
+        <button id='showFruitsBtn'>Only fruit</button>
+        <button id='showVegetablesBtn'>Only vegetables</button>
+    </div>
+    <form onsubmit="return false">
+        <input type="text" name="category" placeholder="Category : fruit or vegetable" id="newCategory">
+        <input type="text" name="question" placeholder="Question" id="newQuestion">
+        <input type="text" name="answer" placeholder="Answer" id="newAnswer">
+        <input id="addCard" type="submit" value="Add new card">    
+    </form>
     <div id="board">
         <!-- <div class="flashcard">
             <p class="question">Fraise</p>

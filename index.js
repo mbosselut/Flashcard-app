@@ -1,56 +1,75 @@
 // Creating array of questions
 let arrayOfQuestions = [{
-        category: 'fruits',
+        category: 'fruit',
         question: 'Fraise',
         answer: 'Aardbei'
     },
     {
-        category: 'fruits',
+        category: 'fruit',
         question: 'Orange',
         answer: 'Sinaasappel'
     },
     {
-        category: 'fruits',
+        category: 'fruit',
         question: 'Cerise',
         answer: 'Kers'
     },
     {
-        category: 'fruits',
+        category: 'fruit',
         question: 'Banane',
         answer: 'Banaan'
     },
     {
-        category: 'fruits',
+        category: 'fruit',
         question: 'Poire',
         answer: 'Peer'
     },
     {
-        category: 'fruits',
+        category: 'fruit',
         question: 'Pomme',
         answer: 'Appel'
     },
     {
-        category: 'fruits',
+        category: 'fruit',
         question: 'Pêche',
         answer: 'Perzik'
+    },
+    {
+        category: 'vegetable',
+        question: 'Poivron',
+        answer: 'Paprika'
+    },
+    {
+        category: 'vegetable',
+        question: 'Oignon',
+        answer: 'Ui'
+    },
+    {
+        category: 'vegetable',
+        question: 'Haricot vert',
+        answer: 'Sperzieboon'
     }
 ]
 
-//TODO : Create function for initialising on page load
+//TODO : Create function to initialize on page load
 
 // Turning a question into a flashcard 
 function createCard(cardObject) {
     const board = document.getElementById('board');
     let newDiv = document.createElement('div');
     newDiv.classList.add('flashcard');
+    // let deleteBtn = document.createElement('p');
     let newQuestion = document.createElement('p');
     let newAnswer = document.createElement('p');
     newQuestion.classList.add('question');
     newAnswer.classList.add('answer');
+    // deleteBtn.classList.add('deleteBtn');
+    // deleteBtn.innerText = 'X';
     newQuestion.innerText = cardObject.question;
     newAnswer.innerText = cardObject.answer;
     newDiv.appendChild(newQuestion);
     newDiv.appendChild(newAnswer);
+    // newDiv.appendChild(deleteBtn);
     board.appendChild(newDiv);
 }
 
@@ -65,6 +84,17 @@ function loadCards(cardsArray) {
 // loadCards(arrayOfQuestions);
 
 // Deleting a card
+// function deleteCard() {
+//     const deleteBtns = document.getElementsByClassName('deleteBtn');
+//     for (const deleteBtn of DeleteBtns) {
+//         deleteBtn.addEventListener('click', function (event) {
+//             const parentCard = deleteBtn.parentElement;
+//             console.log(parentCard);
+//             // const arrChildren = Array.from(children);
+//             parentCard.classList.toggle('show');
+//         })
+//     }
+// }
 
 // Adding event listeners to the cards
 function addEventListeners() {
@@ -100,6 +130,13 @@ document.body.onkeyup = function (e) {
 let showFullBtn = document.getElementById('showFullBtn');
 showFullBtn.addEventListener("click", () => {loadCards(arrayOfQuestions)});
 
+// Event listeners for filters
+let showFruitsBtn = document.getElementById('showFruitsBtn');
+showFruitsBtn.addEventListener("click", () => {loadCards(arrayOfQuestions.filter(function(card){return card.category === "fruit"}))});
+
+let showVegetablesBtn = document.getElementById('showVegetablesBtn');
+showVegetablesBtn.addEventListener("click", () => {loadCards(arrayOfQuestions.filter(function(card){return card.category === "vegetable"}))});
+
 // Clearing board
 function clearBoard() {
     const board = document.getElementById('board');
@@ -107,3 +144,28 @@ function clearBoard() {
         board.removeChild(board.firstChild);
     };
 };
+
+// Adding new card through user input
+const addCardBtn = document.querySelector('#addCard');
+addCardBtn.addEventListener('click', addNewCard);
+
+function addNewCard(){
+    let categoryInput = document.getElementById('newCategory');
+    let questionInput = document.getElementById('newQuestion');
+    let answerInput = document.getElementById('newAnswer');
+    let newCat = categoryInput.value;
+    let newQuestion = questionInput.value;
+    let newAnswer = answerInput.value;
+    const newCard = {
+        category: newCat,
+        question: newQuestion,
+        answer: newAnswer  
+    };
+    arrayOfQuestions.push(newCard);
+    categoryInput.value = null;
+    questionInput.value = null;
+    answerInput.value = null;
+    loadCards(arrayOfQuestions);
+}
+
+// TODO : Add capitalize function
