@@ -56,9 +56,11 @@ function createCard(cardObject) {
 
 // Creating all flashcards
 function loadCards(cardsArray) {
+    clearBoard();
     for (const card of cardsArray) {
         createCard(card);
     }
+    addEventListeners();
 }
 // loadCards(arrayOfQuestions);
 
@@ -85,14 +87,18 @@ function randomCard() {
     addEventListeners();
 }
 
-// Event listener for button and space bar
-let button = document.querySelector("button");
-button.addEventListener("click", randomCard);
+// Event listener for random button and space bar
+let randBtn = document.getElementById("randBtn");
+randBtn.addEventListener("click", randomCard);
 document.body.onkeyup = function (e) {
     if (e.keyCode == 32) {
         randomCard();
     }
 }
+
+// Event listener to show full collection 
+let showFullBtn = document.getElementById('showFullBtn');
+showFullBtn.addEventListener("click", () => {loadCards(arrayOfQuestions)});
 
 // Clearing board
 function clearBoard() {

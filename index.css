@@ -17,12 +17,15 @@ button {
     padding-top:100px;
     width: 80%;
     margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .flashcard {
     background: #BB8694;
     color: #F4F5F4;
-    margin: 0 auto;
+    margin: 20px;
     padding-top: 3%;
     width:20%;
     text-align: center;
