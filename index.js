@@ -35,6 +35,11 @@ let arrayOfQuestions = [{
         answer: 'Perzik'
     },
     {
+        category: 'fruit',
+        question: 'Raisin',
+        answer: 'Druif'
+    },
+    {
         category: 'vegetable',
         question: 'Poivron',
         answer: 'Paprika'
@@ -48,6 +53,16 @@ let arrayOfQuestions = [{
         category: 'vegetable',
         question: 'Haricot vert',
         answer: 'Sperzieboon'
+    },
+    {
+        category: 'vegetable',
+        question: 'Epinards',
+        answer: 'Spinazie'
+    },
+    {
+        category: 'vegetable',
+        question: 'Citrouille',
+        answer: 'Pompoen'
     }
 ]
 
@@ -58,6 +73,11 @@ function createCard(cardObject) {
     const board = document.getElementById('board');
     let newDiv = document.createElement('div');
     newDiv.classList.add('flashcard');
+    if(cardObject.category === "fruit"){
+        newDiv.classList.add('fruit');
+    } else {
+        newDiv.classList.add('vegetable');
+    }
     // let deleteBtn = document.createElement('p');
     let newQuestion = document.createElement('p');
     let newAnswer = document.createElement('p');
@@ -107,7 +127,6 @@ function addEventListeners() {
         })
     }
 }
-addEventListeners();
 
 // Displaying a random card
 function randomCard() {
@@ -116,6 +135,8 @@ function randomCard() {
     createCard(arrayOfQuestions[randomIndex]);
     addEventListeners();
 }
+// Starting the app with a random card
+randomCard();
 
 // Event listener for random button and space bar
 let randBtn = document.getElementById("randBtn");
@@ -136,6 +157,7 @@ showFruitsBtn.addEventListener("click", () => {loadCards(arrayOfQuestions.filter
 
 let showVegetablesBtn = document.getElementById('showVegetablesBtn');
 showVegetablesBtn.addEventListener("click", () => {loadCards(arrayOfQuestions.filter(function(card){return card.category === "vegetable"}))});
+
 
 // Clearing board
 function clearBoard() {

@@ -3,32 +3,71 @@ body {
     font-family: 'Overpass', sans-serif;
 }
 
-h1 {
+h1, h2 {
     color: #F4F5F4;
-    margin-top:50px;
     text-align: center;
 }
 
+.buttons {
+    margin: 10px;
+}
+
+button, #addCard {
+    /* default for <button>, but useful for <a> */
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    /* invisible border (will be colored on hover/focus) */
+    border: solid 1px transparent;
+    border-radius: 4px;
+    /* size comes from text & padding (no width/height) */
+    padding: 0.5em 1em;
+    background: #F4F5F4;
+    cursor: pointer;
+}
+
+form {
+    margin: 30px 10px 50px 0px;
+}
+
+form input {
+    height: 30px;
+    padding:3px;
+}
+
 #board {
-    padding-top:100px;
-    width: 80%;
+    padding: 20px 0 20px 0;
+    width: 60%;
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    border: 1px solid #F4F5F4;
+    border-radius: 5%;
 }
 
 .flashcard {
-    background: #BB8694;
+    background: white;
     color: #F4F5F4;
     margin: 20px;
     padding-top: 3%;
     width:15%;
+    min-width:180px;
     text-align: center;
     height: 250px;
+    border: 0.5px solid #F4F5F4;
     border-radius:10%;
     box-shadow: -10px -5px 10px #47434E;
     position: relative;
+}
+
+.fruit {
+    background: #BB8694;
+}
+
+.vegetable {
+    background: rgb(207, 218, 186);
+    color: rgb(153, 137, 135);
 }
 
 .question {
