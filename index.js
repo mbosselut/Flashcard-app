@@ -66,6 +66,26 @@ let arrayOfQuestions = [{
     }
 ]
 
+//Setting up local storage
+let items;
+// let data;
+
+//On page load, checks if local storage present or uses hardcoded array
+if (localStorage.getItem('items')) {
+    items = JSON.parse(localStorage.getItem('items'))
+} else {
+    items = arrayOfQuestions;
+}
+updateLocalStorage(items);
+
+//
+function updateLocalStorage(items){
+    localStorage.setItem('items', JSON.stringify(items));
+    arrayOfQuestions = JSON.parse(localStorage.getItem('items'));
+    // arrayOfQuestions = data;
+};
+
+
 //TODO : Create function to initialize on page load
 
 // Turning a question into a flashcard 
@@ -111,9 +131,12 @@ function addEventListeners() {
         card.addEventListener('click', function (event) {
             if (event.target.classList.contains('deleteBtn')) {
                 const targetAnswer = event.target.previousSibling.innerText;
-                const filteredArr = arrayOfQuestions.filter(function(card){return card.answer !== targetAnswer});
+                //if broken : replace items by arrayOfQuestions to revert
+                const filteredArr = items.filter(function(card){return card.answer !== targetAnswer});
                 // console.log(filteredArr);
-                arrayOfQuestions = filteredArr;
+                //if broken : replace items by arrayOfQuestions to revert
+                items = filteredArr;
+                updateLocalStorage(items);
                 loadCards(arrayOfQuestions);
             } else {
                 const children = card.childNodes;
@@ -182,10 +205,12 @@ function addNewCard(){
         question: newQuestion,
         answer: newAnswer  
     };
-    arrayOfQuestions.push(newCard);
+    //    arrayOfQuestions.push(newCard);
+    items.push(newCard);
     categoryInput.value = null;
     questionInput.value = null;
     answerInput.value = null;
+    updateLocalStorage(items);
     loadCards(arrayOfQuestions);
 }
 
